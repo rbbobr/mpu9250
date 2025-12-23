@@ -90,7 +90,7 @@ pub enum MpuXDevice {
     /// MPU 9255
     MPU9255 = 0x73,
     /// MPU 6500
-    MPU6500 = 0x70,
+    MPU6500 = 0x68, // 0x70,
 }
 
 impl MpuXDevice {
