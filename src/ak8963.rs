@@ -1,6 +1,6 @@
 //! AK8963, I2C magnetometer
 
-use hal::blocking::delay::DelayMs;
+use hal::delay::DelayNs;
 
 // I2C slave address
 pub const I2C_ADDRESS: u8 = 0x0c;
@@ -48,13 +48,13 @@ pub trait AK8963 {
     /// It may not make sense to call this more than once. However, it is
     /// absolutely necessary to call it at least once if you need the
     /// magnetometer
-    fn init<D: DelayMs<u8>>(&mut self,
+    fn init<D: DelayNs>(&mut self,
                             delay: &mut D)
                             -> Result<(), Self::Error>;
 
     /// Perform final initialization. Invoked after acquiring the magnetomter's
     /// calibration values and setting the sampling rate and resolution.
-    fn finalize<D: DelayMs<u8>>(&mut self,
+    fn finalize<D: DelayNs>(&mut self,
                                 _: &mut D)
                                 -> Result<(), Self::Error> {
         Ok(())

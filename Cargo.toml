@@ -9,7 +9,7 @@ readme = "README.md"
 repository = "https://github.com/copterust/mpu9250"
 
 [dependencies]
-embedded-hal = "0.2.3"
+embedded-hal = "1.0.0"
 bitflags = "1.0"
 libm = { version = "0.2.1", optional = true }
 
