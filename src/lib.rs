@@ -368,12 +368,10 @@ pub use spi_defs::*;
 #[cfg(feature = "i2c")]
 mod i2c_defs {
     use super::*;
-    use hal::blocking::i2c;
+    use hal::i2c;
 
     impl<E, I2C> Mpu9250<I2cDevice<I2C>, Imu>
-        where I2C: i2c::Read<Error = E>
-                  + i2c::Write<Error = E>
-                  + i2c::WriteRead<Error = E>
+        where I2C: i2c::I2c<Error = E>
     {
         /// Creates a new [`Imu`] driver from an I2C peripheral
         /// with default configuration.
@@ -423,9 +421,7 @@ mod i2c_defs {
     }
 
     impl<E, I2C> Mpu9250<I2cDevice<I2C>, Marg>
-        where I2C: i2c::Read<Error = E>
-                  + i2c::Write<Error = E>
-                  + i2c::WriteRead<Error = E>
+        where I2C: i2c::I2c<Error = E>
     {
         /// Creates a new [`Marg`] driver from an I2C peripheral with
         /// default [`Config`].
@@ -478,9 +474,7 @@ mod i2c_defs {
 
     #[cfg(feature = "dmp")]
     impl<E, I2C> Mpu9250<I2cDevice<I2C>, Dmp>
-        where I2C: i2c::Read<Error = E>
-                  + i2c::Write<Error = E>
-                  + i2c::WriteRead<Error = E>
+        where I2C: i2c::I2c<Error = E>
     {
         /// Creates a new DMP driver from an I2C peripheral with default
         /// configuration
@@ -511,9 +505,7 @@ mod i2c_defs {
 
     // I2C device, any mode
     impl<E, I2C, MODE> Mpu9250<I2cDevice<I2C>, MODE>
-        where I2C: i2c::Read<Error = E>
-                  + i2c::Write<Error = E>
-                  + i2c::WriteRead<Error = E>
+        where I2C: i2c::I2c<Error = E>
     {
         /// Destroys the driver, recovering the I2C peripheral
         pub fn release(self) -> I2C {
